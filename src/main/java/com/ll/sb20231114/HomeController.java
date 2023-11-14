@@ -15,6 +15,7 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
+
     @GetMapping("/")
     @ResponseBody
     // 이 함수의 리턴값을 그대로 브라우저에게 전송한다.
@@ -232,6 +233,14 @@ public class HomeController {
         model.addAttribute("v1", "안녕");
         model.addAttribute("v2", "반가워");
         return "calc21";
+    }
+    int num = 0;
+    @GetMapping("/calc22")
+    @ResponseBody
+    int showCalc22(){
+        //예시 : ???++;
+        num++;
+        return num;
     }
 }
 
