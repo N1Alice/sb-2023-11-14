@@ -11,60 +11,57 @@ import java.util.List;
 
 @Controller
 public class ArticleController {
+
     private List<Article> articles = new ArrayList<>();
 
+//    public ArticleController(){
+//        articles = new ArrayList<>();
+//    }
+
+    //GET /article/write
     @GetMapping("/article/write")
-    String showWrite() {
-        return "article/write";
+    @ResponseBody
+    String showWrite(){
+        return "글쓰기 페이지";
     }
 
+    //GET /article/doWrite?title=제목&body=내용
     @GetMapping("/article/doWrite")
     @ResponseBody
-    RsData doWrite(
-            String title,
-            String body
-    ) {
-        Article article = new Article(articles.size() + 1, title, body);
+    RsData<Article> doWrite(String title, String body){
+        long id = articles.size() + 1;
+        Article article = new Article (id, title, body);
         articles.add(article);
 
-        RsData<Article> rs = new RsData<>(
-                "S-1",
-                "%d번 게시물이 작성되었습니다.".formatted(article.getId()),
-                article
-        );
-
-        String resultCode = rs.getResultCode();
-        String msg = rs.getMsg();
-        Article _article = rs.getData();
-
-        return rs;
+        return new RsData<>("S-" + articles.size(), "성공", article);
     }
 
+    //GET /article/getLastArticle
     @GetMapping("/article/getLastArticle")
     @ResponseBody
-    Article getLastArticle() {
+    Article getLastArticle(){
         return articles.getLast();
     }
 
+    //GET /article/getArticles
     @GetMapping("/article/getArticles")
     @ResponseBody
-    List<Article> getArticles() {
+    List<Article> getArticles(){
         return articles;
     }
 }
-
 @AllArgsConstructor
 @Getter
-class RsData<T> {
-    private String resultCode;
-    private String msg;
-    private T data;
+class Article{
+    private long id;
+    private String title;
+    private String body;
 }
 
 @AllArgsConstructor
 @Getter
-class Article {
-    private long id;
-    private String title;
-    private String body;
+class RsData<T>{
+    private String resultCode;
+    private String msg;
+    private  T data;
 }
