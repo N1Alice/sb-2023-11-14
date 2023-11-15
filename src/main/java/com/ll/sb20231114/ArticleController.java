@@ -1,5 +1,60 @@
 package com.ll.sb20231114;
 
+//@Controller
+//public class ArticleController {
+//    private List<Article> articles = new ArrayList<>();
+//    @GetMapping("/article/write")
+//    String showWrite() {
+//        return "article/write";
+//    }
+//    @GetMapping("/article/doWrite")
+//    @ResponseBody
+//    RsData doWrite(
+//            String title,
+//            String body
+//    ) {
+//        Article article = new Article(articles.size() + 1, title, body);
+//        articles.add(article);
+//
+//        RsData<Article> rs = new RsData<>(
+//                "S-1",
+//                "%d번 게시물이 작성되었습니다.".formatted(article.getId()),
+//                article
+//        );
+//        String resultCode = rs.getResultCode();
+//        String msg = rs.getMsg();
+//        Article _article = rs.getData();
+//        return rs;
+//    }
+//    @GetMapping("/article/getLastArticle")
+//    @ResponseBody
+//    Article getLastArticle() {
+//        return articles.getLast();
+//    }
+//    @GetMapping("/article/getArticles")
+//    @ResponseBody
+//    List<Article> getArticles() {
+//        return articles;
+//    }
+//}
+//
+//@AllArgsConstructor
+//@Getter
+//class RsData<T> {
+//    private String resultCode;
+//    private String msg;
+//    private T data;
+//
+//}
+//
+//@AllArgsConstructor
+//@Getter
+//class Article {
+//    private long id;
+//    private String title;
+//    private String body;
+//}
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
@@ -20,9 +75,8 @@ public class ArticleController {
 
     //GET /article/write
     @GetMapping("/article/write")
-    @ResponseBody
     String showWrite(){
-        return "글쓰기 페이지";
+        return "article/write";
     }
 
     //GET /article/doWrite?title=제목&body=내용
