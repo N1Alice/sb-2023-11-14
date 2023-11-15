@@ -11,11 +11,15 @@
 
 <script>
     function submitWriteForm(){
+        const inputTitle = document.getElementById('input-title');
+        const inputBody = document.getElementById('input-title');
+
+
         document.getElementById('input-title').value = document.getElementById('input-title').value.trim();
         document.getElementById('input-body').value = document.getElementById('input-body').value.trim();
 
-        const title = document.getElementById('input-title').value;
-        const body = document.getElementById('input-body').value;
+        const title = inputTitle.value;
+        const body = inputBody.value;
         // 공백제거 trim
 
         if(title.length == 0){
